@@ -880,6 +880,25 @@ require('lazy').setup({
       --  Check out: https://github.com/nvim-mini/mini.nvim
     end,
   },
+  {
+    'chipsenkbeil/org-roam.nvim',
+    tag = '0.2.0',
+    dependencies = {
+      {
+        'nvim-orgmode/orgmode',
+        tag = '0.7.0',
+      },
+    },
+    config = function()
+      require("org-roam").setup({
+        directory = "~/Documents/Personal/emacs_org/roam/",
+        -- optional
+        org_files = {
+          "~/Documents/Personal/emacs_org/*.org"
+        }
+      })
+  end
+  },
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
