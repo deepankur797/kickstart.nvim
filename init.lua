@@ -880,9 +880,10 @@ require('lazy').setup({
       --  Check out: https://github.com/nvim-mini/mini.nvim
     end,
   },
+  -- Org roam with Org mode. Parser installed separately :TSinstall org
   {
     'chipsenkbeil/org-roam.nvim',
-    tag = '0.2.0',
+    tag = '0.2.0', -- Current Dependencies based on nvim lazy 
     dependencies = {
       {
         'nvim-orgmode/orgmode',
@@ -898,6 +899,18 @@ require('lazy').setup({
         }
       })
   end
+  },
+
+  -- NeoTree Setup 
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons", -- optional, but recommended
+    },
+    lazy = false, -- neo-tree will lazily load itself
   },
 
   { -- Highlight, edit, and navigate code
