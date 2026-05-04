@@ -888,6 +888,29 @@ require('lazy').setup({
       {
         'nvim-orgmode/orgmode',
         tag = '0.7.0',
+        config = function ()
+          -- org mode setup
+          require('orgmode').setup({
+            org_agenda_files = { "~/Documents/Personal/emacs_org/daily-planner.org" },
+            org_default_notes_file = "~/Documents/Personal/emacs_org/refile.org",
+            org_todo_keywords = { 'TODO', 'STRT', 'WAIT', 'HOLD', '|', 'KILL', 'DONE' },
+            org_archive_location = "~/Documents/Personal/emacs_org/daily-planner.org_archive::",
+          })
+
+          -- 2. Define your Archive Keymap specifically for Org files
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = 'org',
+          callback = function()
+            -- Use the Action API for state cycling
+            vim.keymap.set('n', '<S-Right>', function()
+              require('orgmode').action('org_mappings.todo_next_state')
+            end, { buffer = true })
+            vim.keymap.set('n', '<S-Left>', function()
+              require('orgmode').action('org_mappings.todo_prev_state')
+            end, { buffer = true })
+          end,
+        })
+        end
       },
     },
     config = function()
